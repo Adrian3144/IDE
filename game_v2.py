@@ -45,5 +45,31 @@ def score_game(random_predict) -> int:
     return score
 
 
-if name == "__main__":
+def game_core_v3(number: int = 1) -> int:
+    """
+    Args:
+        number (int, optional): Загаданное число. Defaults to 1.
+
+    Returns:
+        int: Число попыток
+    """
+    count = 0
+    right_side = 200
+    left_side = 1
+
+    while True: # Цикл While генерит случанйые цифры в диапазоне от right_side и left_side
+      random_array = np.random.randint(left_side, right_side)
+      count += 1
+
+      if number > random_array: # Если случайное число меньше загадонного, то приравниваем леву границу этому числу
+        left_side = random_array
+      elif number < random_array: # Если случайное число больше загадонного, то приравниваем правую границу этому числу
+        right_side = random_array
+      else: # Иначе компьютер угадал. Выход из цикла
+        break
+
+    return count
+
+
+if __name__ == "__main__":
     score_game(random_predict)
